@@ -7,7 +7,7 @@ void main() {
   const NumberTriviaModel tNumberTriviaModel = NumberTriviaModel(text: "Test Text", number: 1);
 
   test(
-    "description",
+    "should be a subclass of NumberTrivia entity",
     () async {
       // Asserts
       expect(tNumberTriviaModel, isA<NumberTrivia>());  
