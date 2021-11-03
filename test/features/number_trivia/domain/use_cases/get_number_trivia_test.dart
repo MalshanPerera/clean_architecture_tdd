@@ -25,7 +25,7 @@ void main() {
     "should get trivia for the number from the repository",
     () async {
       // Arrange
-      when(mockNumberTriviaRepository.getNumberTrivia(any as int)).thenAnswer((realInvocation) async => const Right(tNumberTrivia));
+      when(mockNumberTriviaRepository.getNumberTrivia(any)).thenAnswer((realInvocation) async => const Right(tNumberTrivia));
       // Act
       final result = await useCase(tNumber);
       // Assert
