@@ -98,11 +98,11 @@ class NetworkService {
     } on SocketException {
       throw NetworkException();
     } on TimeoutException{
-      throw NetworkException();
-    } on FormatException{
-      throw NetworkException();
+      throw TimeoutException();
+    } on FormatException {
+      throw const FormatException();
     } on HttpException {
-      throw NetworkException();
+      throw HttpException();
     } finally {
       _client.close();
     }
