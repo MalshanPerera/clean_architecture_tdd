@@ -3,9 +3,10 @@ import 'package:clean_architecture_tdd/core/helper/app_enum.dart';
 class FlavorValues {
 
   // Add other flavor values here. eg: database name, themes, etc.
+  final String appName;
   final String baseUrl;
 
-  FlavorValues({required this.baseUrl});
+  FlavorValues({required this.appName, required this.baseUrl});
 }
 
 class FlavorConfig {

@@ -7,8 +7,9 @@ import 'head.dart';
 
 void main() async {
   FlavorConfig(
-    flavor: Flavor.DEV,
+    flavor: Flavor.PROD,
     values: FlavorValues(
+      appName: "Clean Architecture",
       baseUrl: 'http://ec2-52-28-136-161.eu-central-1.compute.amazonaws.com:3000',
     ),
   );
