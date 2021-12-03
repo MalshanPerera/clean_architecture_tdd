@@ -45,7 +45,7 @@ void init() {
   // Core
   sl.registerLazySingleton<NetworkService>(() => NetworkService());
   sl.registerLazySingleton<NavigationService>(() => NavigationService());
-  sl.registerLazySingleton<ErrorService>(() => ErrorService(), dispose: (v) => v.dispose());
+  sl.registerLazySingleton<ErrorService>(() => ErrorService(sl()));
 
   // External
 }

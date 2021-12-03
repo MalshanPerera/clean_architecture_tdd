@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ErrorToast {
 
-  void showError(BuildContext context, GeneralException exception) {
+  void showError(BuildContext context, String message, [VoidCallback? onRetry]) {
     final Flushbar _flushBar = Flushbar(
       flushbarPosition: FlushbarPosition.BOTTOM,
       flushbarStyle: FlushbarStyle.FLOATING,
@@ -30,11 +30,11 @@ class ErrorToast {
       ],
       isDismissible: true,
       backgroundColor: PRIMARY_COLOR,
-      duration: exception.duration,
-      mainButton: exception.onTap != null ? TextButton(
+      // duration: exception.duration,
+      mainButton: onRetry != null ? TextButton(
         onPressed: () {
           Navigator.pop(context);
-          exception.onTap!();
+          onRetry();
         },
         child: const Text(
           "Try Again",
@@ -57,7 +57,7 @@ class ErrorToast {
           ),
           Expanded(
             child: Text(
-              exception.message ?? '',
+              message,
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 13.0,

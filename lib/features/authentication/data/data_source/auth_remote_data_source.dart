@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:clean_architecture_tdd/core/error/error_model.dart';
+import 'package:clean_architecture_tdd/core/error/exception.dart';
 import 'package:clean_architecture_tdd/core/helper/app_config.dart';
 import 'package:clean_architecture_tdd/core/helper/app_enum.dart';
 import 'package:clean_architecture_tdd/core/services/network_service.dart';
@@ -28,19 +32,29 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
     required String email,
     required String password,
   }) async {
-    var response = await networkService.performRequest(
-      AppConfig.authentication,
-      HttpAction.POST,
-      body: {
-        "email": email,
-        "password": password,
-      },
-    );
+    try {
+      var response = await networkService.performRequest(
+        AppConfig.authentication,
+        HttpAction.POST,
+        body: {
+          "email": email,
+          "password": password,
+        },
+      );
 
-    if (response.statusCode == 200) {
-      return compute(userFromJson, response.body);
-    } else {
-      return UserModel(message: response.body);
+      if (response.statusCode == 200) {
+        return compute(userFromJson, response.body);
+      } else {
+        var model = ErrorModel.fromJson(json.decode(response.body));
+
+        if(model.message == "password must be longer than or equal to 8 characters") {
+          throw IncorrectPasswordException();
+        } else {
+          throw UnknownException(model.message);
+        }
+      }
+    }catch (e){
+      rethrow;
     }
   }
 

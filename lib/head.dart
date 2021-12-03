@@ -20,36 +20,6 @@ class Head extends StatefulWidget {
 
 class _HeadState extends State<Head> {
 
-  final errorHandler = sl<ErrorService>();
-
-  StreamSubscription? _errorSubscription;
-  Stream<GeneralException>? _prevErrorStream;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // Subscribe to error stream
-    if(_prevErrorStream != errorHandler.getErrorText){
-      _prevErrorStream = errorHandler.getErrorText;
-      _errorSubscription?.cancel();
-      listenToErrors();
-    }
-  }
-
-  @override
-  void dispose() {
-    _errorSubscription?.cancel();
-    errorHandler.dispose();
-    super.dispose();
-  }
-
-  void listenToErrors(){
-    _errorSubscription = _prevErrorStream!.listen((error){
-      sl<NavigationService>().showError(error);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(

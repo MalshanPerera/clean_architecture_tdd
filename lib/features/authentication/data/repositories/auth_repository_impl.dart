@@ -1,3 +1,4 @@
+import 'package:clean_architecture_tdd/core/error/exception.dart';
 import 'package:clean_architecture_tdd/core/error/failure.dart';
 import 'package:clean_architecture_tdd/features/authentication/data/data_source/auth_remote_data_source.dart';
 import 'package:clean_architecture_tdd/features/authentication/domain/entities/user_results.dart';
@@ -51,8 +52,12 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final remoteTrivia = await getSignInOrSignUp();
       return Right(remoteTrivia);
-    } catch (e) {
-      return const Left(ServerFailure());
+    } on NetworkException {
+      return Left(NetworkFailure());
+    } on IncorrectPasswordException {
+      return Left(IncorrectPasswordFailure());
+    } on UnknownException catch (e) {
+      return Left(UnknownFailure(e.message));
     }
   }
 }

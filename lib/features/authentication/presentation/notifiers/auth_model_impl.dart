@@ -24,14 +24,8 @@ class AuthModelImpl extends AuthModel {
   Future<void> signIn({required String email, required String password}) {
     return signInUC(SignInParams(email: email, password: password)).then(
       (v) => v.fold(
-        (l) => errorService.setError(SkeletonHttpException(message: l.errorMessage)),
-        (r) {
-          if (r.data != null) {
-            navigationService.pushReplacement(CONTENT_SCREEN_ROUTE);
-          }else {
-            errorService.setError(SkeletonHttpException(message: r.message));
-          }
-        },
+        (l) => errorService.showError(l),
+        (r) => navigationService.pushReplacement(CONTENT_SCREEN_ROUTE),
       ),
     );
   }

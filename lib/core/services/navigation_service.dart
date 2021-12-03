@@ -17,11 +17,5 @@ class NavigationService {
     return _navigatorKey.currentState!.pushReplacementNamed(routeName, arguments: args);
   }
 
-  void showError(GeneralException exception) {
-    final context = _navigatorKey.currentState!.overlay!.context;
-    final ErrorToast handler = ErrorToast();
-    handler.showError(context, exception);
-  }
-
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
 }

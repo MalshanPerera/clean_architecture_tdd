@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:clean_architecture_tdd/core/error/exception.dart';
 import 'package:clean_architecture_tdd/core/helper/app_enum.dart';
 import 'package:http/http.dart';
 import '../helper/app_secure_storage.dart';
@@ -95,13 +96,13 @@ class NetworkService {
 
       return response;
     } on SocketException {
-      rethrow;
+      throw NetworkException();
     } on TimeoutException{
-      rethrow;
+      throw NetworkException();
     } on FormatException{
-      rethrow;
+      throw NetworkException();
     } on HttpException {
-      rethrow;
+      throw NetworkException();
     } finally {
       _client.close();
     }

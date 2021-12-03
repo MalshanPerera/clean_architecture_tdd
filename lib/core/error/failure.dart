@@ -1,34 +1,28 @@
 import 'package:equatable/equatable.dart';
 
-abstract class Failure extends Equatable {
-  final String errorMessage;
-  // If the subclasses have some properties, they'll get passed to this constructor
-  // so that Equatable can perform value comparison.
-  const Failure({required this.errorMessage, List properties = const <dynamic>[]}) :super();
-
-  @override
-  List<Object?> get props => [];
-}
-
-// General failures
-class ServerFailure extends Failure {
-  const ServerFailure() : super(errorMessage: "Server Error!");
-}
+abstract class Failure extends Equatable {}
 
 class NetworkFailure extends Failure {
-  const NetworkFailure() : super(errorMessage: "No network connection. Please try again!");
+  @override
+  List<Object> get props => [];
+
+  @override
+  String toString() => 'No Internet Connection';
 }
 
-class FormatFailure extends Failure {
-  const FormatFailure() : super(errorMessage: "Bad Request");
+class UnknownFailure extends Failure {
+  final String? message;
+
+  UnknownFailure([this.message]);
+
+  @override
+  List<Object> get props => [];
+
+  @override
+  String toString() => message ?? 'Unknown Failure';
 }
 
-class TimeoutFailure extends Failure {
-  const TimeoutFailure() : super(errorMessage: "Request timed out. Please try again!");
-}
-
-class HttpException extends Failure {
-  final String message;
-  const HttpException({required this.message}) : super(errorMessage: message);
-
+class IncorrectPasswordFailure extends Failure {
+  @override
+  List<Object> get props => [];
 }
