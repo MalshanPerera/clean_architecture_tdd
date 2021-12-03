@@ -1,6 +1,16 @@
 {
-    "text": "Test Text",
-    "number": 1,
-    "found": true,
-    "type": "Trivia"
+    "data": {
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGNlNTAzZjhhYzEzYWYyYzA5ZGY3YyIsInJvbGVzIjpbImFkbWluIl0sImVtYWlsIjoidmluY2VudEBnYXBzdGFycy5uZXQiLCJkaXNwbGF5TmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNjM4NTIxMTIyLCJleHAiOjE2Mzg1MjIwMjJ9.O9XGUU2_6tMspd6MqBBtJx2dg2U5mPzyltK_nDP1WuY",
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGNlNTAzZjhhYzEzYWYyYzA5ZGY3YyIsInJvbGVzIjpbImFkbWluIl0sImVtYWlsIjoidmluY2VudEBnYXBzdGFycy5uZXQiLCJkaXNwbGF5TmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNjM4NTIxMTIyLCJleHAiOjE2NDExMTMzMjJ9.vY_oZoHmXykCopajmOfOCrDCp49OKzEPGmCh4VQD1vc",
+        "roles": [
+            "admin"
+        ],
+        "userData": {
+            "firstName": "Vincent",
+            "lastName": "kooistra",
+            "displayName": "John Doe",
+            "avatar": "https://global-one-content.s3.eu-central-1.amazonaws.com/default-images/default-avatar.png",
+            "email": "vincent@gapstars.net"
+        }
+    }
 }

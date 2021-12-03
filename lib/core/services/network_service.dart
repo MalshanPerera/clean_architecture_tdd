@@ -4,7 +4,9 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:clean_architecture_tdd/core/error/exception.dart';
+import 'package:clean_architecture_tdd/core/error/failure.dart';
 import 'package:clean_architecture_tdd/core/helper/app_enum.dart';
+import 'package:dartz/dartz.dart';
 import 'package:http/http.dart';
 import '../helper/app_secure_storage.dart';
 
@@ -16,7 +18,7 @@ class NetworkService {
     'Accept': 'application/json',
   };
 
-  Future<Response> performRequest(
+  Future<Either<Failure , Response>> performRequest(
     String url,
     HttpAction action, {
     Map<String, dynamic>? body,
@@ -94,15 +96,15 @@ class NetworkService {
 
       log("Result: ${response.body}");
 
-      return response;
+      return Right(response);
     } on SocketException {
-      throw NetworkException();
+      return Left(NetworkFailure());
     } on TimeoutException{
-      throw TimeoutException();
+      return Left(TimeoutFailure());
     } on FormatException {
-      throw const FormatException();
+      return Left(FormatFailure());
     } on HttpException {
-      throw HttpException();
+      return Left(HttpFailure());
     } finally {
       _client.close();
     }

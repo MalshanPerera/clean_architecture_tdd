@@ -23,12 +23,10 @@ class AuthRepositoryImpl implements AuthRepository {
     required String email,
     required String password,
   }) async {
-    return await _authenticate(() {
-      return remoteDataSource.signIn(
-        email: email,
-        password: password,
-      );
-    });
+    return await remoteDataSource.signIn(
+      email: email,
+      password: password,
+    );
   }
 
   @override
@@ -38,26 +36,24 @@ class AuthRepositoryImpl implements AuthRepository {
     required String firstName,
     required String lastName,
   }) async {
-    return await _authenticate(() {
-      return remoteDataSource.signUp(
-        email: email,
-        password: password,
-        firstName: firstName,
-        lastName: lastName,
-      );
-    });
+    return await remoteDataSource.signUp(
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+    );
   }
 
-  Future<Either<Failure, UserResults>> _authenticate(_SignInOrSignUp getSignInOrSignUp) async {
-    try {
-      final remoteTrivia = await getSignInOrSignUp();
-      return Right(remoteTrivia);
-    } on NetworkException {
-      return Left(NetworkFailure());
-    } on IncorrectPasswordException {
-      return Left(IncorrectPasswordFailure());
-    } on UnknownException catch (e) {
-      return Left(UnknownFailure(e.message));
-    }
-  }
+  // Future<Either<Failure, UserResults>> _authenticate(_SignInOrSignUp getSignInOrSignUp) async {
+  //   try {
+  //     final remoteTrivia = await getSignInOrSignUp();
+  //     return Right(remoteTrivia);
+  //   } on NetworkException {
+  //     return Left(NetworkFailure());
+  //   } on IncorrectPasswordException {
+  //     return Left(IncorrectPasswordFailure());
+  //   } on UnknownException catch (e) {
+  //     return Left(UnknownFailure(e.message));
+  //   }
+  // }
 }
