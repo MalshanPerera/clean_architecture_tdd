@@ -30,7 +30,7 @@ class ErrorToast {
       ],
       isDismissible: true,
       backgroundColor: PRIMARY_COLOR,
-      // duration: exception.duration,
+      duration: const Duration(seconds: 3),
       mainButton: onRetry != null ? TextButton(
         onPressed: () {
           Navigator.pop(context);
