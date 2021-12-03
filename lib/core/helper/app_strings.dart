@@ -1,5 +1,3 @@
-const String APP_NAME = "Flutter Demo";
-
 // Routes
 const String SPLASH_SCREEN_ROUTE = "/splash_screen";
 const String SIGN_IN_SCREEN_ROUTE = "/sign_in_screen";
