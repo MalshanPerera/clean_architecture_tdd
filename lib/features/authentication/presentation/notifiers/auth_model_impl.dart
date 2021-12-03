@@ -21,7 +21,7 @@ class AuthModelImpl extends AuthModel {
   });
 
   @override
-  Future<void> signIn({required String email, required String password}) {
+  Future<void> signIn({required String email, required String password}) async {
     return signInUC(SignInParams(email: email, password: password)).then(
       (v) => v.fold(
         (l) => errorService.showError(l),

@@ -10,6 +10,22 @@ class NetworkFailure extends Failure {
   String toString() => 'No Internet Connection, please check your connection';
 }
 
+class TimeoutFailure extends Failure {
+  @override
+  List<Object> get props => [];
+
+  @override
+  String toString() => 'Timeout, please check your connection';
+}
+
+class FormatFailure extends Failure {
+  @override
+  List<Object> get props => [];
+
+  @override
+  String toString() => 'Formatting error';
+}
+
 class HttpFailure extends Failure {
   @override
   List<Object> get props => [];
